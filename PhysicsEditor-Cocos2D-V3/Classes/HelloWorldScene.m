@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------
 
 #import "HelloWorldScene.h"
-#import "IntroScene.h"
+#import "GCCShapeCache.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -16,7 +16,7 @@
 
 @implementation HelloWorldScene
 {
-    CCSprite *_sprite;
+    CCPhysicsNode *_physicsWorld;
 }
 
 // -----------------------------------------------------------------------
@@ -30,6 +30,16 @@
 
 // -----------------------------------------------------------------------
 
+- (void)spawnSprite:(NSString *)name atPos:(CGPoint)pos
+{
+    CCSprite *sprite = [CCSprite spriteWithImageNamed:[NSString stringWithFormat:@"%@.png", name]];
+    sprite.position = pos;
+    [[GCCShapeCache sharedShapeCache] setBodyWithName:name onNode:sprite];
+    [_physicsWorld addChild:sprite];
+}
+
+// -----------------------------------------------------------------------
+
 - (id)init
 {
     // Apple recommend assigning self with supers return value
@@ -38,26 +48,24 @@
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
+
+    // Load shapes
+    [[GCCShapeCache sharedShapeCache] addShapesWithFile:@"Shapes.plist"];
     
-    // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
+    // Load background image
+    CCSprite *background = [CCSprite spriteWithImageNamed:@"background.png"];
+    background.anchorPoint = ccp(0,0);
     [self addChild:background];
+
+    // Setup physics world
+    _physicsWorld = [CCPhysicsNode node];
+    _physicsWorld.gravity = ccp(0,-900);
+    //_physicsWorld.debugDraw = YES;
+    [self addChild:_physicsWorld];
     
-    // Add a sprite
-    _sprite = [CCSprite spriteWithImageNamed:@"Icon-72.png"];
-    _sprite.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_sprite];
-    
-    // Animate sprite with action
-    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
-    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
-    
-    // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
-    backButton.positionType = CCPositionTypeNormalized;
-    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [backButton setTarget:self selector:@selector(onBackClicked:)];
-    [self addChild:backButton];
+    // Add ground sprite and drop a banana
+    [self spawnSprite:@"ground" atPos:ccp(0,0)];
+    [self spawnSprite:@"banana" atPos:ccp(self.contentSize.width/2,self.contentSize.height/2)];
 
     // done
 	return self;
@@ -100,23 +108,10 @@
 -(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchLoc = [touch locationInNode:self];
     
-    // Log touch location
-    CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+    static int i = 0;
+    NSArray *sprites = @[ @"banana", @"cherries", @"crate", @"orange" ];
     
-    // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
-    [_sprite runAction:actionMove];
-}
-
-// -----------------------------------------------------------------------
-#pragma mark - Button Callbacks
-// -----------------------------------------------------------------------
-
-- (void)onBackClicked:(id)sender
-{
-    // back to intro scene with transition
-    [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+    [self spawnSprite:[sprites objectAtIndex:(i++ % [sprites count])] atPos:touchLoc];
 }
 
 // -----------------------------------------------------------------------

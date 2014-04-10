@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+    <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>1</integer>
+        </dict>
+        <key>scale_factor</key>
+        <real>2</real>
+        <key>category_names</key>
+        <array>
+            <string>ground</string>
+            <string>fruits</string>
+            <string>others</string>
+            <string>bit_3</string>
+            <string>bit_4</string>
+            <string>bit_5</string>
+            <string>bit_6</string>
+            <string>bit_7</string>
+            <string>bit_8</string>
+            <string>bit_9</string>
+            <string>bit_10</string>
+            <string>bit_11</string>
+            <string>bit_12</string>
+            <string>bit_13</string>
+            <string>bit_14</string>
+            <string>bit_15</string>
+            <string>bit_16</string>
+            <string>bit_17</string>
+            <string>bit_18</string>
+            <string>bit_19</string>
+            <string>bit_20</string>
+            <string>bit_21</string>
+            <string>bit_22</string>
+            <string>bit_23</string>
+            <string>bit_24</string>
+            <string>bit_25</string>
+            <string>bit_26</string>
+            <string>bit_27</string>
+            <string>bit_28</string>
+            <string>bit_29</string>
+            <string>bit_30</string>
+            <string>bit_31</string>
+        </array>         
+        <key>bodies</key>
+        <dict>
+
+            <key>banana</key>
+            <dict>
+                <key>anchorpoint</key>
+                <string>{ 0.69531,0.31250 }</string>
+                <key>is_static</key>
+                <false/>
+                <key>affected_by_gravity</key>
+                <true/>
+                <key>allows_rotation</key>
+                <true/>
+                <key>fixtures</key>
+                <array>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>1</real>
+                        <key>elasticity</key>
+                        <real>0.5</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>2</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        
+                        <key>fixture_type</key>
+                        <string>POLYGON</string>
+                        <key>polygons</key>
+                        <array>
+                            <array>   
+                                <string>{ 105.00000,106.00000 }</string>   
+                                <string>{ 93.00000,100.00000 }</string>   
+                                <string>{ 89.00000,122.00000 }</string>   
+                                <string>{ 106.00000,128.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 27.00000,35.00000 }</string>   
+                                <string>{ 45.00000,0.00000 }</string>   
+                                <string>{ 0.00000,22.00000 }</string>   
+                                <string>{ 3.00000,35.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 56.00000,42.00000 }</string>   
+                                <string>{ 104.00000,19.00000 }</string>   
+                                <string>{ 79.00000,5.00000 }</string>   
+                                <string>{ 45.00000,0.00000 }</string>   
+                                <string>{ 27.00000,35.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 79.00000,61.00000 }</string>   
+                                <string>{ 118.00000,37.00000 }</string>   
+                                <string>{ 104.00000,19.00000 }</string>   
+                                <string>{ 56.00000,42.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 93.00000,100.00000 }</string>   
+                                <string>{ 105.00000,106.00000 }</string>   
+                                <string>{ 123.00000,88.00000 }</string>   
+                                <string>{ 126.00000,62.00000 }</string>   
+                                <string>{ 118.00000,37.00000 }</string>   
+                                <string>{ 79.00000,61.00000 }</string>
+                            </array>
+                        </array>
+                        
+                        
+                    </dict>
+
+                </array>
+            </dict>
+
+            <key>cherries</key>
+            <dict>
+                <key>anchorpoint</key>
+                <string>{ 0.66797,0.83594 }</string>
+                <key>is_static</key>
+                <false/>
+                <key>affected_by_gravity</key>
+                <true/>
+                <key>allows_rotation</key>
+                <true/>
+                <key>fixtures</key>
+                <array>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>0.3</real>
+                        <key>elasticity</key>
+                        <real>0.5</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>2</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        <key>fixture_type</key>
+                        <string>CIRCLE</string>
+                        <key>circle</key>
+                        <dict>
+                            <key>radius</key> 
+                            <real>24.000</real>
+                            <key>position</key> 
+                            <string>{ 38.000,26.000 }</string>
+                        </dict>
+                        
+                    </dict>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>1</real>
+                        <key>elasticity</key>
+                        <real>0.9</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>2</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string>fruits</string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        <key>fixture_type</key>
+                        <string>CIRCLE</string>
+                        <key>circle</key>
+                        <dict>
+                            <key>radius</key> 
+                            <real>24.000</real>
+                            <key>position</key> 
+                            <string>{ 99.500,25.500 }</string>
+                        </dict>
+                        
+                    </dict>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>1</real>
+                        <key>elasticity</key>
+                        <real>0.8</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>2</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        
+                        <key>fixture_type</key>
+                        <string>POLYGON</string>
+                        <key>polygons</key>
+                        <array>
+                            <array>   
+                                <string>{ 39.00000,42.00000 }</string>   
+                                <string>{ 48.00000,76.00000 }</string>   
+                                <string>{ 60.00000,92.00000 }</string>   
+                                <string>{ 82.00000,80.00000 }</string>   
+                                <string>{ 93.00000,44.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 85.00000,97.00000 }</string>   
+                                <string>{ 60.00000,92.00000 }</string>   
+                                <string>{ 76.50000,109.00000 }</string>   
+                                <string>{ 85.50000,113.00000 }</string>   
+                                <string>{ 92.50000,106.50000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 60.00000,92.00000 }</string>   
+                                <string>{ 85.00000,97.00000 }</string>   
+                                <string>{ 82.00000,80.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 60.00000,92.00000 }</string>   
+                                <string>{ 45.00000,90.00000 }</string>   
+                                <string>{ 30.00000,96.00000 }</string>   
+                                <string>{ 25.50000,115.50000 }</string>   
+                                <string>{ 53.00000,124.00000 }</string>   
+                                <string>{ 76.50000,109.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 25.50000,115.50000 }</string>   
+                                <string>{ 30.00000,96.00000 }</string>   
+                                <string>{ 7.50000,120.50000 }</string>
+                            </array>
+                        </array>
+                        
+                        
+                    </dict>
+
+                </array>
+            </dict>
+
+            <key>crate</key>
+            <dict>
+                <key>anchorpoint</key>
+                <string>{ 0.53125,0.47266 }</string>
+                <key>is_static</key>
+                <false/>
+                <key>affected_by_gravity</key>
+                <true/>
+                <key>allows_rotation</key>
+                <true/>
+                <key>fixtures</key>
+                <array>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>20</real>
+                        <key>elasticity</key>
+                        <real>0.2</real>
+                        <key>friction</key>
+                        <real>0.2</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>4</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        
+                        <key>fixture_type</key>
+                        <string>POLYGON</string>
+                        <key>polygons</key>
+                        <array>
+                            <array>   
+                                <string>{ 123.00000,0.00000 }</string>   
+                                <string>{ 10.00000,45.00000 }</string>   
+                                <string>{ 4.00000,120.00000 }</string>   
+                                <string>{ 125.00000,120.00000 }</string>
+                            </array>
+                            <array>   
+                                <string>{ 10.00000,45.00000 }</string>   
+                                <string>{ 123.00000,0.00000 }</string>   
+                                <string>{ 7.00000,0.00000 }</string>
+                            </array>
+                        </array>
+                        
+                        
+                    </dict>
+
+                </array>
+            </dict>
+
+            <key>ground</key>
+            <dict>
+                <key>anchorpoint</key>
+                <string>{ 0.00000,0.00000 }</string>
+                <key>is_static</key>
+                <true/>
+                <key>affected_by_gravity</key>
+                <false/>
+                <key>allows_rotation</key>
+                <false/>
+                <key>fixtures</key>
+                <array>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>1</real>
+                        <key>elasticity</key>
+                        <real>0.5</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>1</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        
+                        <key>fixture_type</key>
+                        <string>POLYLINE</string>
+                        <key>polygons</key>
+                        <array>
+                            <array>   
+                                <string>{ 0.00000,0.00000 }</string>   
+                                <string>{ 0.00000,287.00000 }</string>   
+                                <string>{ 33.00000,285.00000 }</string>   
+                                <string>{ 47.00000,262.00000 }</string>   
+                                <string>{ 45.00000,232.00000 }</string>   
+                                <string>{ 27.00000,240.00000 }</string>   
+                                <string>{ 23.00000,232.00000 }</string>   
+                                <string>{ 27.00000,225.00000 }</string>   
+                                <string>{ 21.00000,218.00000 }</string>   
+                                <string>{ 34.00000,189.00000 }</string>   
+                                <string>{ 17.00000,170.00000 }</string>   
+                                <string>{ 9.00000,138.00000 }</string>   
+                                <string>{ 33.00000,93.00000 }</string>   
+                                <string>{ 26.00000,81.00000 }</string>   
+                                <string>{ 47.00000,68.00000 }</string>   
+                                <string>{ 56.00000,75.00000 }</string>   
+                                <string>{ 71.00000,73.00000 }</string>   
+                                <string>{ 78.00000,61.00000 }</string>   
+                                <string>{ 103.00000,46.00000 }</string>   
+                                <string>{ 118.00000,50.00000 }</string>   
+                                <string>{ 134.00000,43.00000 }</string>   
+                                <string>{ 141.00000,54.00000 }</string>   
+                                <string>{ 165.00000,55.00000 }</string>   
+                                <string>{ 190.00000,46.00000 }</string>   
+                                <string>{ 205.00000,64.00000 }</string>   
+                                <string>{ 262.00000,43.00000 }</string>   
+                                <string>{ 269.00000,54.00000 }</string>   
+                                <string>{ 293.00000,55.00000 }</string>   
+                                <string>{ 318.00000,46.00000 }</string>   
+                                <string>{ 333.00000,64.00000 }</string>   
+                                <string>{ 390.00000,43.00000 }</string>   
+                                <string>{ 397.00000,54.00000 }</string>   
+                                <string>{ 421.00000,55.00000 }</string>   
+                                <string>{ 446.00000,46.00000 }</string>   
+                                <string>{ 461.00000,64.00000 }</string>   
+                                <string>{ 496.00000,50.00000 }</string>   
+                                <string>{ 500.00000,57.00000 }</string>   
+                                <string>{ 511.00000,57.00000 }</string>   
+                                <string>{ 527.00000,80.00000 }</string>   
+                                <string>{ 542.00000,81.00000 }</string>   
+                                <string>{ 559.00000,68.00000 }</string>   
+                                <string>{ 566.00000,86.00000 }</string>   
+                                <string>{ 587.00000,85.00000 }</string>   
+                                <string>{ 591.00000,93.00000 }</string>   
+                                <string>{ 602.00000,90.00000 }</string>   
+                                <string>{ 615.00000,102.00000 }</string>   
+                                <string>{ 607.00000,114.00000 }</string>   
+                                <string>{ 618.00000,145.00000 }</string>   
+                                <string>{ 604.00000,178.00000 }</string>   
+                                <string>{ 619.00000,213.00000 }</string>   
+                                <string>{ 598.00000,234.00000 }</string>   
+                                <string>{ 591.00000,265.00000 }</string>   
+                                <string>{ 608.00000,286.00000 }</string>   
+                                <string>{ 640.00000,287.00000 }</string>   
+                                <string>{ 640.00000,0.00000 }</string>
+                            </array>
+                        </array>
+                        
+                        
+                    </dict>
+
+                </array>
+            </dict>
+
+            <key>orange</key>
+            <dict>
+                <key>anchorpoint</key>
+                <string>{ 0.53906,0.46875 }</string>
+                <key>is_static</key>
+                <false/>
+                <key>affected_by_gravity</key>
+                <true/>
+                <key>allows_rotation</key>
+                <true/>
+                <key>fixtures</key>
+                <array>
+
+                    <dict>
+                        <key>mass</key>
+                        <real>1</real>
+                        <key>elasticity</key>
+                        <real>0.5</real>
+                        <key>friction</key>
+                        <real>0.7</real>
+                        <key>surface_velocity</key>
+                        <string>{ 0.00000,0.00000 }</string>
+                        <key>corner_radius</key>
+                        <real>0</real>
+                        <key>collision_categories</key>
+                        <integer>2</integer>
+                        <key>collision_mask</key>
+                        <integer>7</integer>
+                        <key>collision_type</key>
+                        <string></string>
+                        <key>collision_group</key>
+                        <string></string>
+                        <key>is_sensor</key>
+                        <false/>
+                        
+                        <key>fixture_type</key>
+                        <string>CIRCLE</string>
+                        <key>circle</key>
+                        <dict>
+                            <key>radius</key> 
+                            <real>61.074</real>
+                            <key>position</key> 
+                            <string>{ 66.000,60.667 }</string>
+                        </dict>
+                        
+                    </dict>
+
+                </array>
+            </dict>
+
+        </dict>
+    </dict>
+</plist>
+
+
+
+

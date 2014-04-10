@@ -211,7 +211,14 @@
 		AA3B48E118F69E4700604EFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3B48E018F69E4700604EFE /* main.m */; };
 		AA3B48E518F69E4700604EFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3B48E418F69E4700604EFE /* AppDelegate.m */; };
 		AA3B48E818F69E4700604EFE /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3B48E718F69E4700604EFE /* HelloWorldScene.m */; };
-		AA3B48EB18F69E4700604EFE /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3B48EA18F69E4700604EFE /* IntroScene.m */; };
+		AAC639CF18F6A4FB0076AB66 /* GCCShapeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC639CE18F6A4FB0076AB66 /* GCCShapeCache.m */; };
+		AAC639D718F6A5090076AB66 /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D018F6A5090076AB66 /* background-hd.png */; };
+		AAC639D818F6A5090076AB66 /* banana-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D118F6A5090076AB66 /* banana-hd.png */; };
+		AAC639D918F6A5090076AB66 /* cherries-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D218F6A5090076AB66 /* cherries-hd.png */; };
+		AAC639DA18F6A5090076AB66 /* crate-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D318F6A5090076AB66 /* crate-hd.png */; };
+		AAC639DB18F6A5090076AB66 /* ground-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D418F6A5090076AB66 /* ground-hd.png */; };
+		AAC639DC18F6A5090076AB66 /* orange-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D518F6A5090076AB66 /* orange-hd.png */; };
+		AAC639DD18F6A5090076AB66 /* Shapes.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC639D618F6A5090076AB66 /* Shapes.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -651,8 +658,15 @@
 		AA3B48E418F69E4700604EFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		AA3B48E618F69E4700604EFE /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		AA3B48E718F69E4700604EFE /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
-		AA3B48E918F69E4700604EFE /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
-		AA3B48EA18F69E4700604EFE /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
+		AAC639CD18F6A4FB0076AB66 /* GCCShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCCShapeCache.h; path = Classes/GCCShapeCache.h; sourceTree = "<group>"; };
+		AAC639CE18F6A4FB0076AB66 /* GCCShapeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCCShapeCache.m; path = Classes/GCCShapeCache.m; sourceTree = "<group>"; };
+		AAC639D018F6A5090076AB66 /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-hd.png"; path = "Resources/background-hd.png"; sourceTree = "<group>"; };
+		AAC639D118F6A5090076AB66 /* banana-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "banana-hd.png"; path = "Resources/banana-hd.png"; sourceTree = "<group>"; };
+		AAC639D218F6A5090076AB66 /* cherries-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cherries-hd.png"; path = "Resources/cherries-hd.png"; sourceTree = "<group>"; };
+		AAC639D318F6A5090076AB66 /* crate-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crate-hd.png"; path = "Resources/crate-hd.png"; sourceTree = "<group>"; };
+		AAC639D418F6A5090076AB66 /* ground-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ground-hd.png"; path = "Resources/ground-hd.png"; sourceTree = "<group>"; };
+		AAC639D518F6A5090076AB66 /* orange-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orange-hd.png"; path = "Resources/orange-hd.png"; sourceTree = "<group>"; };
+		AAC639D618F6A5090076AB66 /* Shapes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Shapes.plist; path = Resources/Shapes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -724,6 +738,13 @@
 		AA3B465418F69E4600604EFE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AAC639D018F6A5090076AB66 /* background-hd.png */,
+				AAC639D118F6A5090076AB66 /* banana-hd.png */,
+				AAC639D218F6A5090076AB66 /* cherries-hd.png */,
+				AAC639D318F6A5090076AB66 /* crate-hd.png */,
+				AAC639D418F6A5090076AB66 /* ground-hd.png */,
+				AAC639D518F6A5090076AB66 /* orange-hd.png */,
+				AAC639D618F6A5090076AB66 /* Shapes.plist */,
 				AA3B465518F69E4600604EFE /* Default.png */,
 				AA3B465718F69E4600604EFE /* Default@2x.png */,
 				AA3B465918F69E4600604EFE /* Default-568h@2x.png */,
@@ -1540,12 +1561,12 @@
 		AA3B48E218F69E4700604EFE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AAC639CD18F6A4FB0076AB66 /* GCCShapeCache.h */,
+				AAC639CE18F6A4FB0076AB66 /* GCCShapeCache.m */,
 				AA3B48E318F69E4700604EFE /* AppDelegate.h */,
 				AA3B48E418F69E4700604EFE /* AppDelegate.m */,
 				AA3B48E618F69E4700604EFE /* HelloWorldScene.h */,
 				AA3B48E718F69E4700604EFE /* HelloWorldScene.m */,
-				AA3B48E918F69E4700604EFE /* IntroScene.h */,
-				AA3B48EA18F69E4700604EFE /* IntroScene.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1621,11 +1642,14 @@
 				AA3B465818F69E4600604EFE /* Default@2x.png in Resources */,
 				AA3B466B18F69E4600604EFE /* Icon-120.png in Resources */,
 				AA3B486F18F69E4700604EFE /* LICENSE_CCBReader.txt in Resources */,
+				AAC639DA18F6A5090076AB66 /* crate-hd.png in Resources */,
 				AA3B466118F69E4600604EFE /* Icon@2x.png in Resources */,
+				AAC639DC18F6A5090076AB66 /* orange-hd.png in Resources */,
 				AA3B467318F69E4600604EFE /* Icon-Small@2x.png in Resources */,
 				AA3B466518F69E4600604EFE /* Icon-72@2x.png in Resources */,
 				AA3B465618F69E4600604EFE /* Default.png in Resources */,
 				AA3B465F18F69E4600604EFE /* Icon.png in Resources */,
+				AAC639DB18F6A5090076AB66 /* ground-hd.png in Resources */,
 				AA3B466D18F69E4600604EFE /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
 				AA3B465C18F69E4600604EFE /* Default-Landscape~ipad.png in Resources */,
 				AA3B467118F69E4600604EFE /* Icon-Small.png in Resources */,
@@ -1633,14 +1657,18 @@
 				AA3B485818F69E4700604EFE /* LICENSE_Kazmath.txt in Resources */,
 				AA3B466318F69E4600604EFE /* Icon-72.png in Resources */,
 				AA3B47B118F69E4600604EFE /* LICENSE_cocos2d.txt in Resources */,
+				AAC639D918F6A5090076AB66 /* cherries-hd.png in Resources */,
 				AA3B465A18F69E4600604EFE /* Default-568h@2x.png in Resources */,
 				AA3B467A18F69E4600604EFE /* iTunesArtwork in Resources */,
 				AA3B467518F69E4600604EFE /* Icon-Spotlight-iOS7.png in Resources */,
 				AA3B466918F69E4600604EFE /* Icon-76@2x.png in Resources */,
 				AA3B48DD18F69E4700604EFE /* LICENSE_Chipmunk.txt in Resources */,
+				AAC639DD18F6A5090076AB66 /* Shapes.plist in Resources */,
+				AAC639D818F6A5090076AB66 /* banana-hd.png in Resources */,
 				AA3B467718F69E4600604EFE /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				AA3B466718F69E4600604EFE /* Icon-76.png in Resources */,
 				AA3B483D18F69E4700604EFE /* ChangeLog in Resources */,
+				AAC639D718F6A5090076AB66 /* background-hd.png in Resources */,
 				AA3B467C18F69E4600604EFE /* iTunesArtwork@2x in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1707,7 +1735,6 @@
 				AA3B47A018F69E4600604EFE /* NSThread+performBlock.m in Sources */,
 				AA3B472B18F69E4600604EFE /* CCShaderCache.m in Sources */,
 				AA3B486818F69E4700604EFE /* CCBSequenceProperty.m in Sources */,
-				AA3B48EB18F69E4700604EFE /* IntroScene.m in Sources */,
 				AA3B476F18F69E4600604EFE /* CCGLView.m in Sources */,
 				AA3B473218F69E4600604EFE /* CCSprite.m in Sources */,
 				AA3B468E18F69E4600604EFE /* CCActionInterval.m in Sources */,
@@ -1783,6 +1810,7 @@
 				AA3B46C618F69E4600604EFE /* CCLabelAtlas.m in Sources */,
 				AA3B476118F69E4600604EFE /* cocos2d.m in Sources */,
 				AA3B47E918F69E4700604EFE /* ALSource.m in Sources */,
+				AAC639CF18F6A4FB0076AB66 /* GCCShapeCache.m in Sources */,
 				AA3B46F118F69E4600604EFE /* CCParticleSystem.m in Sources */,
 				AA3B471618F69E4600604EFE /* CCScene.m in Sources */,
 				AA3B474418F69E4600604EFE /* CCTexture.m in Sources */,
@@ -1989,6 +2017,7 @@
 				AA3B48F018F69E4700604EFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA3B48F118F69E4700604EFE /* Build configuration list for PBXNativeTarget "PhysicsEditor-Cocos2D-V3" */ = {
 			isa = XCConfigurationList;
@@ -1997,6 +2026,7 @@
 				AA3B48F318F69E4700604EFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
