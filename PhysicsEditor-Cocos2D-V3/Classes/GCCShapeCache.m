@@ -196,8 +196,14 @@ typedef enum
     [shape setFriction:fixture->friction];
     [shape setSurfaceVelocity:fixture->surfaceVelocity];
     [shape setSensor:fixture->isSensor];
-    [shape setCollisionCategories:fixture->collisionCategories];
-    [shape setCollisionMask:fixture->collisionMask];
+    if (fixture->collisionCategories != nil && [fixture->collisionCategories count] > 0)
+    {
+        [shape setCollisionCategories:fixture->collisionCategories];
+    }
+    if (fixture->collisionMask != nil && [fixture->collisionMask count] > 0)
+    {
+        [shape setCollisionMask:fixture->collisionMask];
+    }
     if (fixture->collisionGroup != nil)
     {
         [shape setCollisionGroup:fixture->collisionGroup];
