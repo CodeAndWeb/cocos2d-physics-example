@@ -159,6 +159,7 @@ typedef enum
 {
     NSArray *categoryNames;
     CGFloat scaleFactor;
+    CGFloat innerPadding;
 }
 
 + (GCCShapeCache *)sharedShapeCache
@@ -307,6 +308,7 @@ typedef enum
     
     categoryNames = [dictionary objectForKey:@"category_names"];
     scaleFactor = [[dictionary objectForKey:@"scale_factor"] floatValue];
+    innerPadding = [[dictionary objectForKey:@"inner_padding"] floatValue];
     
     NSDictionary *bodyDict = [dictionary objectForKey:@"bodies"];
 
@@ -396,8 +398,8 @@ typedef enum
                     for(NSString *pointString in polygonArray)
                     {
                         CGPoint offset = CGPointFromString_(pointString);
-                        vertices[vindex].x = offset.x / scaleFactor;
-                        vertices[vindex].y = offset.y / scaleFactor;
+                        vertices[vindex].x = (offset.x + innerPadding) / scaleFactor;
+                        vertices[vindex].y = (offset.y + innerPadding) / scaleFactor;
                         vindex++;
                     }
 
@@ -411,8 +413,8 @@ typedef enum
 
                 fd->radius = [[circleData objectForKey:@"radius"] floatValue] / scaleFactor;
                 fd->center = CGPointFromString_([circleData objectForKey:@"position"]);
-                fd->center.x /= scaleFactor;
-                fd->center.y /= scaleFactor;
+                fd->center.x = (fd->center.x + innerPadding) / scaleFactor;
+                fd->center.y = (fd->center.y + innerPadding) / scaleFactor;
             }
             else
             {

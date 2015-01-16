@@ -9,10 +9,12 @@
         </dict>
         <key>scale_factor</key>
         <real>{{global.scale_factor}}</real>
+        <key>inner_padding</key>
+        <real>{{global.inner_padding}}</real>
         <key>category_names</key>
         <array>{% for bit in global.collision_bitfield %}
             <string>{{bit}}</string>{% endfor %}
-        </array>         
+        </array>
         <key>bodies</key>
         <dict>
 {% for body in bodies %}
@@ -55,9 +57,9 @@
                         <string>{{fixture.type}}</string>
                         <key>circle</key>
                         <dict>
-                            <key>radius</key> 
+                            <key>radius</key>
                             <real>{{fixture.radius|floatformat:3}}</real>
-                            <key>position</key> 
+                            <key>position</key>
                             <string>{ {{fixture.center.x|floatformat:3}},{{fixture.center.y|floatformat:3}} }</string>
                         </dict>
                         {% else %}
@@ -66,7 +68,7 @@
                         <string>POLYLINE</string>
                         <key>polygons</key>
                         <array>
-                            <array>{% for point in fixture.hull %}   
+                            <array>{% for point in fixture.hull %}
                                 <string>{ {{point.x|floatformat:5}},{{point.y|floatformat:5}} }</string>{% endfor %}
                             </array>
                         </array>
@@ -75,7 +77,7 @@
                         <string>{{fixture.type}}</string>
                         <key>polygons</key>
                         <array>{% for polygon in fixture.polygons %}
-                            <array>{% for point in polygon %}   
+                            <array>{% for point in polygon %}
                                 <string>{ {{point.x|floatformat:5}},{{point.y|floatformat:5}} }</string>{% endfor %}
                             </array>{% endfor %}
                         </array>

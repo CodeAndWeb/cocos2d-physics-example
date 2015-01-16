@@ -26,8 +26,15 @@
             <type>float</type>
             <default>1.0</default>
         </parameter>
+        <parameter>
+            <name>inner_padding</name>
+            <displayName>Inner Padding</displayName>
+            <description>The inner padding used on the sprite sheet</description>
+            <type>float</type>
+            <default>0.0</default>
+        </parameter>
     </global>
-    
+
     <!-- body settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <body>
         <parameter>
