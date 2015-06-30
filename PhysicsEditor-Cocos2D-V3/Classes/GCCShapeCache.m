@@ -273,7 +273,7 @@ typedef enum
 -(NSArray *)categoryListFromBitfield:(uint32_t)bits
 {
     NSMutableArray *names = [NSMutableArray new];
-    int nameCount = min(32, [categoryNames count]);
+    int nameCount = MIN(32, (int)[categoryNames count]);
     for (int i = 0; i < nameCount; i++)
     {
         if (bits & (1 << i))
