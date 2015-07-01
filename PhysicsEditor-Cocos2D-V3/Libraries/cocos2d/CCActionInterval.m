@@ -49,7 +49,7 @@
 	return nil;
 }
 
-+(id) actionWithDuration: (CCTime) d
++(instancetype) actionWithDuration: (CCTime) d
 {
 	return [[self alloc] initWithDuration:d ];
 }
@@ -117,7 +117,7 @@
 //
 #pragma mark - CCSequence
 @implementation CCActionSequence
-+(id) actions: (CCActionFiniteTime*) action1, ...
++(instancetype) actions: (CCActionFiniteTime*) action1, ...
 {
 	va_list args;
 	va_start(args, action1);
@@ -129,34 +129,42 @@
 	return  ret;
 }
 
-+(id) actions: (CCActionFiniteTime*) action1 vaList:(va_list)args
++(instancetype)actions:(CCActionFiniteTime*)action1 vaList:(va_list)args
 {
-	CCActionFiniteTime *now;
-	CCActionFiniteTime *prev = action1;
-	
-	while( action1 ) {
-		now = va_arg(args,CCActionFiniteTime*);
-		if ( now )
-			prev = [self actionOne: prev two: now];
-		else
-			break;
-	}
+    CCActionFiniteTime *now = nil;
+    CCActionFiniteTime *prev = action1;
 
-	return prev;
+    while(action1){
+        now = va_arg(args, CCActionFiniteTime *);
+        if(now){
+            prev = [self actionOne:prev two:now];
+        } else {
+            break;
+        }
+    }
+
+    return (CCActionSequence *)prev;
 }
 
 
-+(id) actionWithArray: (NSArray*) actions
++(instancetype)actionWithArray:(NSArray *)actions
 {
-	CCActionFiniteTime *prev = [actions objectAtIndex:0];
-	
-	for (NSUInteger i = 1; i < [actions count]; i++)
-		prev = [self actionOne:prev two:[actions objectAtIndex:i]];
-	
-	return prev;
+    CCActionFiniteTime *prev = actions[0];
+
+    for(NSUInteger i = 1; i < actions.count; i++){
+        prev = [self actionOne:prev two:actions[i]];
+    }
+
+    return (CCActionSequence *)prev;
 }
 
-+(id) actionOne: (CCActionFiniteTime*) one two: (CCActionFiniteTime*) two
+-(id) initWithArray:(NSArray *)actions
+{
+    // this is backwards because it's "safer" as a quick Swift fix for v3.4
+    return [CCActionSequence actionWithArray:actions];
+}
+
++(instancetype) actionOne: (CCActionFiniteTime*) one two: (CCActionFiniteTime*) two
 {
 	return [[self alloc] initOne:one two:two ];
 }
@@ -277,7 +285,7 @@
 @implementation CCActionRepeat
 @synthesize innerAction=_innerAction;
 
-+(id) actionWithAction:(CCActionFiniteTime*)action times:(NSUInteger)times
++(instancetype) actionWithAction:(CCActionFiniteTime*)action times:(NSUInteger)times
 {
 	return [[self alloc] initWithAction:action times:times];
 }
@@ -328,8 +336,7 @@
 	{
 		while (dt > _nextDt && _total < _times)
 		{
-
-			[_innerAction update:1.0f];
+			[_innerAction update:1.0];
 			_total++;
 
 			[_innerAction stop];
@@ -338,7 +345,7 @@
 		}
 		
 		// fix for issue #1288, incorrect end value of repeat
-		if(dt >= 1.0f && _total < _times) 
+		if(dt >= 1.0 && _total < _times) 
 		{
 			_total++;
 		}
@@ -348,7 +355,7 @@
 		{
 			if (_total == _times)
 			{
-				[_innerAction update:1];
+				[_innerAction update:1.0];
 				[_innerAction stop];
 			}
 			else
@@ -360,7 +367,7 @@
 	}
 	else
 	{
-		[_innerAction update:fmodf(dt * _times,1.0f)];
+		[_innerAction update:fmod(dt * _times, 1.0)];
 	}
 }
 
@@ -381,7 +388,8 @@
 #pragma mark - CCSpawn
 
 @implementation CCActionSpawn
-+(id) actions: (CCActionFiniteTime*) action1, ...
+
++(instancetype) actions: (CCActionFiniteTime*) action1, ...
 {
 	va_list args;
 	va_start(args, action1);
@@ -392,34 +400,41 @@
 	return ret;
 }
 
-+(id) actions: (CCActionFiniteTime*) action1 vaList:(va_list)args
++(instancetype) actions: (CCActionFiniteTime*) action1 vaList:(va_list)args
 {
-	CCActionFiniteTime *now;
-	CCActionFiniteTime *prev = action1;
-	
-	while( action1 ) {
-		now = va_arg(args,CCActionFiniteTime*);
-		if ( now )
-			prev = [self actionOne: prev two: now];
-		else
-			break;
-	}
+    CCActionFiniteTime *now = nil;
+    CCActionFiniteTime *prev = action1;
 
-	return prev;
+    while(action1){
+        now = va_arg(args,CCActionFiniteTime*);
+        if(now){
+            prev = [self actionOne: prev two: now];
+        } else {
+            break;
+        }
+    }
+
+    return (CCActionSpawn *)prev;
 }
 
-
-+(id) actionWithArray: (NSArray*) actions
++(instancetype) actionWithArray: (NSArray*) actions
 {
-	CCActionFiniteTime *prev = [actions objectAtIndex:0];
+    CCActionFiniteTime *prev = actions[0];
 
-	for (NSUInteger i = 1; i < [actions count]; i++)
-		prev = [self actionOne:prev two:[actions objectAtIndex:i]];
+    for (NSUInteger i = 1; i < [actions count]; i++){
+        prev = [self actionOne:prev two:actions[i]];
+    }
 
-	return prev;
+    return (CCActionSpawn *)prev;
 }
 
-+(id) actionOne: (CCActionFiniteTime*) one two: (CCActionFiniteTime*) two
+-(id) initWithArray: (NSArray*) actions
+{
+    // this is backwards because it's "safer" as a quick Swift fix for v3.4
+    return [CCActionSpawn actionWithArray:actions];
+}
+
++(instancetype) actionOne: (CCActionFiniteTime*) one two: (CCActionFiniteTime*) two
 {
 	return [[self alloc] initOne:one two:two ];
 }
@@ -488,20 +503,33 @@
 #pragma mark - CCRotateTo
 
 @implementation CCActionRotateTo
-+(id) actionWithDuration: (CCTime) t angle:(float) a
+
++(instancetype) actionWithDuration: (CCTime) t angle:(float) a
 {
-	return [[self alloc] initWithDuration:t angle:a ];
+	return [[self alloc] initWithDuration:t angle:a simple:NO];
+}
+
++(instancetype) actionWithDuration: (CCTime) t angle:(float) a simple:(bool)simple
+{
+	return [[self alloc] initWithDuration:t angle:a simple:simple];
 }
 
 -(id) initWithDuration: (CCTime) t angle:(float) a
 {
-	if( (self=[super initWithDuration: t]) )
+	return [self initWithDuration:t angle:a simple:NO];
+}
+
+-(id) initWithDuration: (CCTime) t angle:(float) a simple:(bool) simple
+{
+	if( (self=[super initWithDuration: t]) ) {
 		_dstAngleX = _dstAngleY = a;
+        _simple    = simple;
+    }
 
 	return self;
 }
 
-+(id) actionWithDuration: (CCTime) t angleX:(float) aX angleY:(float) aY
++(instancetype) actionWithDuration: (CCTime) t angleX:(float) aX angleY:(float) aY
 {
 	return [[self alloc] initWithDuration:t angleX:aX angleY:aY ];
 }
@@ -510,22 +538,71 @@
 {
 	if( (self=[super initWithDuration: t]) ){
 		_dstAngleX = aX;
-    _dstAngleY = aY;
-  }
+        _dstAngleY = aY;
+        _rotateX   = YES;
+        _rotateY   = YES;
+    }
 	return self;
 }
 
++(instancetype) actionWithDuration: (CCTime) t angleX:(float) aX
+{
+	return [[self alloc] initWithDuration:t angleX:aX];
+}
+
+-(id) initWithDuration: (CCTime) t angleX:(float) aX
+{
+	if( (self=[super initWithDuration: t]) ){
+		_dstAngleX = aX;
+        _rotateX   = YES;
+    }
+	return self;
+}
+
++(instancetype) actionWithDuration: (CCTime) t angleY:(float) aY
+{
+	return [[self alloc] initWithDuration:t angleY:aY];
+}
+
+-(id) initWithDuration: (CCTime) t angleY:(float) aY
+{
+	if( (self=[super initWithDuration: t]) ){
+		_dstAngleY = aY;
+        _rotateY   = YES;
+    }
+	return self;
+}
+
+
 -(id) copyWithZone: (NSZone*) zone
 {
-	CCAction *copy = [[[self class] allocWithZone: zone] initWithDuration:[self duration] angleX:_dstAngleX angleY:_dstAngleY];
-	return copy;
+
+    if(_rotateX && _rotateY) {
+        return [[[self class] allocWithZone: zone] initWithDuration:[self duration] angleX:_dstAngleX angleY:_dstAngleY];
+    } else if (_rotateX) {
+        return [[[self class] allocWithZone: zone] initWithDuration:[self duration] angleX:_dstAngleX];
+    } else if (_rotateY) {
+        return [[[self class] allocWithZone: zone] initWithDuration:[self duration] angleY:_dstAngleY];
+    } else if (_simple) {
+        return [[[self class] allocWithZone: zone] initWithDuration:[self duration] angle:_dstAngleX simple:YES];
+    } else {
+        return [[[self class] allocWithZone: zone] initWithDuration:[self duration] angle:_dstAngleX];
+    }
 }
 
 -(void) startWithTarget:(CCNode *)aTarget
 {
 	[super startWithTarget:aTarget];
+    
+    // Simple Rotation (Support SpriteBuilder)
+    if(_simple) {
+        _startAngleX = _startAngleY = [(CCNode*)_target rotation];
+        _diffAngleX = _dstAngleX - _startAngleX;
+        _diffAngleY = _dstAngleY - _startAngleY;
+        return;
+    }
 
-  //Calculate X
+    //Calculate X
 	_startAngleX = [_target rotationalSkewX];
 	if (_startAngleX > 0)
 		_startAngleX = fmodf(_startAngleX, 360.0f);
@@ -539,7 +616,7 @@
 		_diffAngleX += 360;
   
 	
-  //Calculate Y: It's duplicated from calculating X since the rotation wrap should be the same
+   //Calculate Y: It's duplicated from calculating X since the rotation wrap should be the same
 	_startAngleY = [_target rotationalSkewY];
 	if (_startAngleY > 0)
 		_startAngleY = fmodf(_startAngleY, 360.0f);
@@ -561,8 +638,10 @@
     }
     else
     {
-        [_target setRotationalSkewX: _startAngleX + _diffAngleX * t];
-        [_target setRotationalSkewY: _startAngleY + _diffAngleY * t];
+        if(_rotateX)
+            [_target setRotationalSkewX: _startAngleX + _diffAngleX * t];
+        if(_rotateY)
+            [_target setRotationalSkewY: _startAngleY + _diffAngleY * t];
     }
 }
 @end
@@ -574,7 +653,7 @@
 #pragma mark - RotateBy
 
 @implementation CCActionRotateBy
-+(id) actionWithDuration: (CCTime) t angle:(float) a
++(instancetype) actionWithDuration: (CCTime) t angle:(float) a
 {
 	return [[self alloc] initWithDuration:t angle:a ];
 }
@@ -587,7 +666,7 @@
 	return self;
 }
 
-+(id) actionWithDuration: (CCTime) t angleX:(float) aX angleY:(float) aY
++(instancetype) actionWithDuration: (CCTime) t angleX:(float) aX angleY:(float) aY
 {
 	return [[self alloc] initWithDuration:t angleX:aX angleY:aY ];
 }
@@ -642,7 +721,7 @@
 #pragma mark - MoveBy
 
 @implementation CCActionMoveBy
-+(id) actionWithDuration: (CCTime) t position: (CGPoint) p
++(instancetype) actionWithDuration: (CCTime) t position: (CGPoint) p
 {
 	return [[self alloc] initWithDuration:t position:p ];
 }
@@ -680,7 +759,7 @@
 	CGPoint diff = ccpSub(currentPos, _previousPos);
 	_startPos = ccpAdd( _startPos, diff);
 	CGPoint newPos =  ccpAdd( _startPos, ccpMult(_positionDelta, t) );
-	[_target setPosition: newPos];
+	[(CCNode *)_target setPosition: newPos];
 	_previousPos = newPos;
 #else
 	[node setPosition: ccpAdd( _startPos, ccpMult(_positionDelta, t))];
@@ -695,7 +774,7 @@
 #pragma mark MoveTo
 
 @implementation CCActionMoveTo
-+(id) actionWithDuration: (CCTime) t position: (CGPoint) p
++(instancetype) actionWithDuration: (CCTime) t position: (CGPoint) p
 {
 	return [[self alloc] initWithDuration:t position:p ];
 }
@@ -729,7 +808,7 @@
 #pragma mark - CCSkewTo
 
 @implementation CCActionSkewTo
-+(id) actionWithDuration:(CCTime)t skewX:(float)sx skewY:(float)sy
++(instancetype) actionWithDuration:(CCTime)t skewX:(float)sx skewY:(float)sy
 {
 	return [[self alloc] initWithDuration: t skewX:sx skewY:sy];
 }
@@ -832,7 +911,7 @@
 #pragma mark - CCJumpBy
 
 @implementation CCActionJumpBy
-+(id) actionWithDuration: (CCTime) t position: (CGPoint) pos height: (CCTime) h jumps:(NSUInteger)j
++(instancetype) actionWithDuration: (CCTime) t position: (CGPoint) pos height: (CCTime) h jumps:(NSUInteger)j
 {
 	return [[self alloc] initWithDuration: t position: pos height: h jumps:j];
 }
@@ -927,7 +1006,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 // BezierBy
 //
 @implementation CCActionBezierBy
-+(id) actionWithDuration: (CCTime) t bezier:(ccBezierConfig) c
++(instancetype) actionWithDuration: (CCTime) t bezier:(ccBezierConfig) c
 {
 	return [[self alloc] initWithDuration:t bezier:c ];
 }
@@ -1029,7 +1108,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCScaleTo
 @implementation CCActionScaleTo
-+(id) actionWithDuration: (CCTime) t scale:(float) s
++(instancetype) actionWithDuration: (CCTime) t scale:(float) s
 {
 	return [[self alloc] initWithDuration: t scale:s];
 }
@@ -1043,7 +1122,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 	return self;
 }
 
-+(id) actionWithDuration: (CCTime) t scaleX:(float)sx scaleY:(float)sy
++(instancetype) actionWithDuration: (CCTime) t scaleX:(float)sx scaleY:(float)sy
 {
 	return [[self alloc] initWithDuration: t scaleX:sx scaleY:sy];
 }
@@ -1110,7 +1189,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCBlink
 @implementation CCActionBlink
-+(id) actionWithDuration: (CCTime) t blinks: (NSUInteger) b
++(instancetype) actionWithDuration: (CCTime) t blinks: (NSUInteger) b
 {
 	return [[ self alloc] initWithDuration: t blinks: b];
 }
@@ -1194,7 +1273,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCFadeTo
 @implementation CCActionFadeTo
-+(id) actionWithDuration: (CCTime) t opacity: (CGFloat) o
++(instancetype) actionWithDuration: (CCTime) t opacity: (CGFloat) o
 {
 	return [[ self alloc] initWithDuration: t opacity: o];
 }
@@ -1230,7 +1309,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCTintTo
 @implementation CCActionTintTo
-+(id) actionWithDuration:(CCTime)duration color:(CCColor*)color
++(instancetype) actionWithDuration:(CCTime)duration color:(CCColor*)color
 {
 	return [(CCActionTintTo*)[ self alloc] initWithDuration:duration color:color];
 }
@@ -1273,7 +1352,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCTintBy
 @implementation CCActionTintBy
-+(id) actionWithDuration:(CCTime)t red:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b
++(instancetype) actionWithDuration:(CCTime)t red:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b
 {
 	return [(CCActionTintBy*)[ self alloc] initWithDuration:t red:r green:g blue:b];
 }
@@ -1338,7 +1417,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 //
 #pragma mark - CCReverseTime
 @implementation CCActionReverse
-+(id) actionWithAction: (CCActionFiniteTime*) action
++(instancetype) actionWithAction: (CCActionFiniteTime*) action
 {
 	// casting to prevent warnings
 	CCActionReverse *a = [self alloc];
@@ -1396,7 +1475,7 @@ static inline CGFloat bezierat( float a, float b, float c, float d, CCTime t )
 
 @synthesize animation = _animation;
 
-+(id) actionWithAnimation: (CCAnimation*)anim
++(instancetype) actionWithAnimation: (CCAnimation*)anim
 {
 	return [[self alloc] initWithAnimation:anim];
 }

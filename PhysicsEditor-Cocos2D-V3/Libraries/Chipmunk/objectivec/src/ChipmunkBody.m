@@ -20,7 +20,7 @@
  */
 
 #define CP_ALLOW_PRIVATE_ACCESS 1
-#import "ObjectiveChipmunk/ObjectiveChipmunk.h"
+#import "ObjectiveChipmunk.h"
 
 @interface ChipmunkSpace(DoubleDispatch)
 

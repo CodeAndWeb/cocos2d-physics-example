@@ -48,15 +48,8 @@
 {
 	if(nil != (self = [super init]))
 	{
-		suspendHandler = [[OALSuspendHandler alloc] initWithTarget:nil selector:nil];
-		
-		contexts = [NSMutableArray newMutableArrayUsingWeakReferencesWithCapacity:5];
-			
-		[[OpenALManager sharedInstance] notifyDeviceInitializing:self];
-		[[OpenALManager sharedInstance] addSuspendListener:self];
-		
 		OAL_LOG_DEBUG(@"%@: Init device %@", self, deviceSpecifier);
-		
+
 		device = [ALWrapper openDevice:deviceSpecifier];
 		if(nil == device)
 		{
@@ -64,6 +57,13 @@
 			as_release(self);
 			return nil;
 		}
+
+		suspendHandler = [[OALSuspendHandler alloc] initWithTarget:nil selector:nil];
+		
+		contexts = [NSMutableArray newMutableArrayUsingWeakReferencesWithCapacity:5];
+			
+		[[OpenALManager sharedInstance] notifyDeviceInitializing:self];
+		[[OpenALManager sharedInstance] addSuspendListener:self];
 	}
 	return self;
 }

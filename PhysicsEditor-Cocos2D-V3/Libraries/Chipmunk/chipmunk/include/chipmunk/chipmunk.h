@@ -29,13 +29,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#ifdef __WIN32__
-	// For alloca().
-	#include <malloc.h>
-#else
-	#include <alloca.h>
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif

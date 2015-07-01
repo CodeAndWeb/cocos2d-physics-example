@@ -23,6 +23,7 @@
  */
 
 #import "CCBLocalizationManager.h"
+#import "CCBReader.h"
 
 @implementation CCBLocalizationManager
 
@@ -71,10 +72,15 @@
     NSArray* preferredLangs = [NSLocale preferredLanguages];
     for (NSString* preferredLang in preferredLangs)
     {
-        if ([languages containsObject:preferredLang])
+        // now loop thru languages from our spritebuilder
+        for (NSString *localizedLanguage in languages)
         {
-            userLanguage = preferredLang;
-            break;
+            // doing range of string as we might have en-GB set in our phone and that will match our en from the activeLanguages
+            if ([preferredLang rangeOfString:localizedLanguage].location != NSNotFound)
+            {
+                userLanguage = localizedLanguage;
+                break;
+            }
         }
     }
     
@@ -89,7 +95,7 @@
         for (NSDictionary* translation in translations)
         {
             NSString* key = [translation objectForKey:@"key"];
-            NSString* value = [[translation objectForKey:@"translations"] objectForKey:userLanguage];
+            NSString* value = [(NSDictionary*)[translation objectForKey:@"translations"] objectForKey:userLanguage];
             
             if (key != NULL && value != NULL)
             {

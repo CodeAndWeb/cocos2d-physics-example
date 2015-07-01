@@ -30,7 +30,7 @@
 #import "CCNode.h"
 #import "CCSprite.h"
 #import <objc/message.h>
-
+#import "OALSimpleAudio.h"
 
 //
 // InstantAction
@@ -139,7 +139,7 @@
 #pragma mark CCFlipX
 
 @implementation CCActionFlipX
-+(id) actionWithFlipX:(BOOL)x
++(instancetype) actionWithFlipX:(BOOL)x
 {
 	return [[self alloc] initWithFlipX:x];
 }
@@ -175,7 +175,7 @@
 #pragma mark CCFlipY
 
 @implementation CCActionFlipY
-+(id) actionWithFlipY:(BOOL)y
++(instancetype) actionWithFlipY:(BOOL)y
 {
 	return [[self alloc] initWithFlipY:y];
 }
@@ -212,7 +212,7 @@
 #pragma mark CCPlace
 
 @implementation CCActionPlace
-+(id) actionWithPosition: (CGPoint) pos
++(instancetype) actionWithPosition: (CGPoint) pos
 {
 	return [[self alloc]initWithPosition:pos];
 }
@@ -247,7 +247,7 @@
 
 @synthesize targetCallback = _targetCallback;
 
-+(id) actionWithTarget: (id) t selector:(SEL) s
++(instancetype) actionWithTarget: (id) t selector:(SEL) s
 {
 	return [[self alloc] initWithTarget: t selector: s];
 }
@@ -301,7 +301,7 @@
 
 @implementation CCActionCallBlock
 
-+(id) actionWithBlock:(void(^)())block
++(instancetype) actionWithBlock:(void(^)())block
 {
 	return [[self alloc] initWithBlock:block];
 }
@@ -330,6 +330,71 @@
 	_block();
 }
 
+@end
+
+
+#pragma mark CCActionSpriteFrame
+@implementation CCActionSpriteFrame
+
++ (id)actionWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
+{
+	return [[self alloc]initWithSpriteFrame:spriteFrame];
+}
+
+- (id)initWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
+{
+	if( (self=[super init]) )
+		_spriteFrame = spriteFrame;
+    
+	return self;
+}
+
+- (id)copyWithZone:(NSZone*)zone
+{
+	CCSpriteFrame *copy = [[[self class] allocWithZone: zone] initWithSpriteFrame:_spriteFrame];
+	return copy;
+}
+
+- (void)update:(CCTime)time
+{
+	((CCSprite *)self.target).spriteFrame = _spriteFrame;
+}
 
 @end
+
+
+@implementation CCActionSoundEffect
+
++ (id)actionWithSoundFile:(NSString*)f pitch:(float)pi pan:(float) pa gain:(float)ga
+{
+    return [[CCActionSoundEffect alloc] initWithSoundFile:f pitch:pi pan:pa gain:ga];
+}
+
+- (id)initWithSoundFile:(NSString*)file pitch:(float)pi pan:(float) pa gain:(float)ga
+{
+    self = [super init];
+    if (!self) return NULL;
+    
+    _soundFile = [file copy];
+    _pitch = pi;
+    _pan = pa;
+    _gain = ga;
+    
+    return self;
+}
+
+
+- (void)update:(CCTime)time
+{
+    [[OALSimpleAudio sharedInstance] playEffect:_soundFile volume:_gain pitch:_pitch pan:_pan loop:NO];
+}
+
+- (id)copyWithZone:(NSZone*)zone
+{
+	CCSpriteFrame *copy = [[[self class] allocWithZone: zone] initWithSoundFile:_soundFile pitch:_pitch pan:_pan gain:_gain];
+	return copy;
+}
+
+@end
+
 

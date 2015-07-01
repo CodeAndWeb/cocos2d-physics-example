@@ -91,5 +91,3 @@ cpFloat cpConstraintGetImpulse(cpConstraint *constraint);
 #include "cpRatchetJoint.h"
 #include "cpGearJoint.h"
 #include "cpSimpleMotor.h"
-
-///@}

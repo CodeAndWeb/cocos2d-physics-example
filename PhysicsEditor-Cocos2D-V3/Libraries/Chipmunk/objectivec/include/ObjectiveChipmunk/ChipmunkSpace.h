@@ -19,12 +19,14 @@
  * SOFTWARE.
  */
 
-
 /**
 	Chipmunk spaces are simulation containers. You add a bunch of physics objects to a space (rigid bodies, collision shapes, and joints) and step the entire space forward through time as a whole.
 	If you have Chipmunk Pro, you'll want to use the ChipmunkHastySpace subclass instead as it has iPhone specific optimizations.
 	Unfortunately because of how Objective-C code is linked I can't dynamically substitute a ChipmunkHastySpace from a static library.
 */
+
+struct cpSpace;
+
 @interface ChipmunkSpace : NSObject {
 @protected
 	struct cpSpace *_space;
@@ -125,11 +127,7 @@ __attribute__((__deprecated__));
 - (void)separate:(cpArbiter *)arbiter space:(ChipmunkSpace*)space
 	@endcode
 */
-- (void)setDefaultCollisionHandler:(id)delegate
-	begin:(SEL)begin
-	preSolve:(SEL)preSolve
-	postSolve:(SEL)postSolve
-	separate:(SEL)separate;
+// TODO
 
 /**
   Set a collision handler to handle specific collision types.
@@ -146,13 +144,7 @@ __attribute__((__deprecated__));
 - (void)separate:(cpArbiter *)arbiter space:(ChipmunkSpace*)space
 	@endcode
 */
-- (void)addCollisionHandler:(id)delegate
-	typeA:(cpCollisionType)a typeB:(cpCollisionType)b
-	begin:(SEL)begin
-	preSolve:(SEL)preSolve
-	postSolve:(SEL)postSolve
-	separate:(SEL)separate;
-
+// TODO
 
 /**
   Add an object to the space.
@@ -181,7 +173,7 @@ __attribute__((__deprecated__));
 
 /// Handy utility method to add a border of collision segments around a box. See ChipmunkShape for more information on the other parameters.
 /// Returns an NSArray of the shapes. Since NSArray implements the ChipmunkObject protocol, you can use the [ChipmunkSpace remove:] method to remove the bounds.
-- (NSArray *)addBounds:(cpBB)bounds thickness:(cpFloat)radius
+- (NSArray *)addBounds:(CGRect)bounds thickness:(cpFloat)radius
 	elasticity:(cpFloat)elasticity friction:(cpFloat)friction
 	filter:(cpShapeFilter)filter collisionType:(id)collisionType;
 

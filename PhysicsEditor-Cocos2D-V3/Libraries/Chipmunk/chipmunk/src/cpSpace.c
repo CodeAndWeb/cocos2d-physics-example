@@ -148,7 +148,7 @@ cpSpaceInit(cpSpace *space)
 	space->allocatedBuffers = cpArrayNew(0);
 	
 	space->dynamicBodies = cpArrayNew(0);
-	space->staticBodies = cpArrayNew(0);
+	space->otherBodies = cpArrayNew(0);
 	space->sleepingComponents = cpArrayNew(0);
 	space->rousedBodies = cpArrayNew(0);
 	
@@ -194,7 +194,7 @@ cpSpaceDestroy(cpSpace *space)
 	cpSpatialIndexFree(space->dynamicShapes);
 	
 	cpArrayFree(space->dynamicBodies);
-	cpArrayFree(space->staticBodies);
+	cpArrayFree(space->otherBodies);
 	cpArrayFree(space->sleepingComponents);
 	cpArrayFree(space->rousedBodies);
 	
@@ -368,7 +368,7 @@ cpSpaceSetStaticBody(cpSpace *space, cpBody *body)
 cpBool
 cpSpaceIsLocked(cpSpace *space)
 {
-	return (space->locked > 0);
+	return space->locked;
 }
 
 //MARK: Collision Handler Function Management
@@ -425,7 +425,7 @@ cpSpaceAddShape(cpSpace *space, cpShape *shape)
 //	cpAssertHard(body->space == space, "The shape's body must be added to the space before the shape.");
 	cpAssertSpaceUnlocked(space);
 	
-	cpBool isStatic = (cpBodyGetType(body) == CP_BODY_TYPE_STATIC);
+	cpBool isStatic = cpBodyIsStatic(body);
 	if(!isStatic) cpBodyActivate(body);
 	cpBodyAddShape(body, shape);
 	
@@ -444,7 +444,7 @@ cpSpaceAddBody(cpSpace *space, cpBody *body)
 	cpAssertHard(!body->space, "You have already added this body to another space. You cannot add it to a second.");
 	cpAssertSpaceUnlocked(space);
 	
-	cpArrayPush(cpSpaceArrayForBodyType(space, cpBodyGetType(body)), body);
+	cpArrayPush(cpBodyIsDynamic(body) ? space->dynamicBodies : space->otherBodies, body);
 	body->space = space;
 	
 	return body;
@@ -526,7 +526,7 @@ cpSpaceRemoveShape(cpSpace *space, cpShape *shape)
 	cpAssertHard(cpSpaceContainsShape(space, shape), "Cannot remove a shape that was not added to the space. (Removed twice maybe?)");
 	cpAssertSpaceUnlocked(space);
 	
-	cpBool isStatic = (cpBodyGetType(body) == CP_BODY_TYPE_STATIC);
+	cpBool isStatic = cpBodyIsStatic(body);
 	if(isStatic){
 		cpBodyActivateStatic(body, shape);
 	} else {
@@ -551,7 +551,7 @@ cpSpaceRemoveBody(cpSpace *space, cpBody *body)
 	
 	cpBodyActivate(body);
 //	cpSpaceFilterArbiters(space, body, NULL);
-	cpArrayDeleteObj(cpSpaceArrayForBodyType(space, cpBodyGetType(body)), body);
+	cpArrayDeleteObj(cpBodyIsDynamic(body) ? space->dynamicBodies : space->otherBodies, body);
 	body->space = NULL;
 }
 
@@ -596,7 +596,7 @@ cpSpaceEachBody(cpSpace *space, cpSpaceBodyIteratorFunc func, void *data)
 			func((cpBody *)bodies->arr[i], data);
 		}
 		
-		cpArray *otherBodies = space->staticBodies;
+		cpArray *otherBodies = space->otherBodies;
 		for(int i=0; i<otherBodies->num; i++){
 			func((cpBody *)otherBodies->arr[i], data);
 		}

@@ -143,25 +143,21 @@
 @property(nonatomic,readwrite,assign) id<AVAudioSessionDelegate> audioSessionDelegate;
 #endif
 
+/** The preferred I/O buffer duration, in seconds. Lower values give less
+ * playback latencey, but use more CPU.
+ */
+@property(nonatomic,readwrite,assign) float preferredIOBufferDuration;
+
+/** If true, another application (usually iPod) is playing music. */
+@property(nonatomic,readonly,assign) bool ipodPlaying;
+
 /** If true, the audio session is active */
 @property(nonatomic,readwrite,assign) bool audioSessionActive;
 
-/** The preferred I/O buffer duration, in seconds. Lower values give less
- * playback latencey, but use more CPU.
- * @deprecated Use AVAudioSession instead.
- */
-@property(nonatomic,readwrite,assign) float preferredIOBufferDuration __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_6_1);
-
-/** If true, another application (usually iPod) is playing music.
- * @deprecated Use AVAudioSession instead.
- */
-@property(nonatomic,readonly,assign) bool ipodPlaying __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_6_1);
-
 /** Get the device's final hardware output volume, as controlled by
  * the volume button on the side of the device.
- * @deprecated Use AVAudioSession instead.
  */
-@property(nonatomic,readonly,assign) float hardwareVolume __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_6_1);
+@property(nonatomic,readonly,assign) float hardwareVolume;
 
 /** Check if the hardware mute switch is on (not supported on the simulator or iOS 5+).
  * Note: If headphones are plugged in, hardwareMuted will always return FALSE
@@ -169,13 +165,12 @@
  *
  * Note: Please file a bug report with Apple to get this functionality restored in iOS 5!
  */
-@property(nonatomic,readonly,assign) bool hardwareMuted __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_5_0);
+@property(nonatomic,readonly,assign) bool hardwareMuted;
 
 /** Check what hardware route the audio is taking, such as "Speaker" or "Headphone"
  * (not supported on the simulator).
- * @deprecated Use AVAudioSession instead.
  */
-@property(nonatomic,readonly,retain) NSString* audioRoute __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_NA,__MAC_NA,__IPHONE_2_0,__IPHONE_6_1);
+@property(nonatomic,readonly,retain) NSString* audioRoute;
 
 
 #pragma mark Object Management

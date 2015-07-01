@@ -25,13 +25,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCBKeyframe : NSObject
-{
-    id value;
-    float time;
-    int easingType;
-    float easingOpt;
-}
+@class CCActionSequence;
+
+@interface CCBKeyframe : NSObject <NSCopying>
 
 @property (nonatomic,strong) id value;
 @property (nonatomic,assign) float time;

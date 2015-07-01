@@ -19,7 +19,7 @@
  * SOFTWARE.
  */
 
-#import "ObjectiveChipmunk/ObjectiveChipmunk.h"
+#import "ObjectiveChipmunk.h"
 
 @interface ChipmunkGrab : NSObject<ChipmunkObject> {
 	NSArray *_chipmunkObjects;

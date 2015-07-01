@@ -31,7 +31,6 @@
 #import "ObjectALMacros.h"
 #import "ARCSafe_MemMgmt.h"
 #import "OALNotifications.h"
-#import "CCFileUtils.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 
@@ -66,13 +65,16 @@ static NSBundle* g_defaultBundle;
 	{
 		return nil;
 	}
-	
-    NSString* fullPath = [[CCFileUtils sharedFileUtils] fullPathForFilename:path];
-    if(nil == fullPath)
-    {
-        OAL_LOG_ERROR(@"Could not find full path of file %@", path);
-        return nil;
-    }
+	NSString* fullPath = path;
+	if([fullPath characterAtIndex:0] != '/')
+	{
+		fullPath = [bundle pathForResource:path ofType:nil];
+		if(nil == fullPath)
+		{
+			OAL_LOG_ERROR(@"Could not find full path of file %@", path);
+			return nil;
+		}
+	}
 	
 	return [NSURL fileURLWithPath:fullPath];
 }
@@ -140,11 +142,11 @@ static NSBundle* g_defaultBundle;
 	}
 }
 
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 + (void) notifyAudioSessionError:(OSStatus)errorCode
 					 function:(const char*) function
 				  description:(NSString*) description, ...
 {
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 	if(noErr != errorCode)
 	{
 		NSString* errorString;
@@ -215,14 +217,7 @@ static NSBundle* g_defaultBundle;
 			[[NSNotificationCenter defaultCenter] postNotificationName:OALAudioErrorNotification object:self];
 		}
 	}
-}
-#else
-+ (void) notifyAudioSessionError:(__unused OSStatus)errorCode
-                        function:(__unused const char*) function
-                     description:(__unused NSString*) description, ...
-{
-
-}
 #endif
+}
 
 @end

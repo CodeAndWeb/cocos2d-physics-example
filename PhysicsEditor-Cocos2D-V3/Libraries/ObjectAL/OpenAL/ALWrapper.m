@@ -110,17 +110,10 @@ static alSourceRemoveNotificationProcPtr alSourceRemoveNotification = NULL;
 #pragma mark -
 #pragma mark Error Handling
 
-static inline bool isValidError(ALenum error)
-{
-    // TODO: Monitor this and make sure it doesn't mask a real failure in OpenAL that
-    // would require a restart of the audio session.
-    return error != AL_NO_ERROR && error != -1;
-}
-
 BOOL checkIfSuccessful(const char* contextInfo)
 {
 	ALenum error = alGetError();
-    if(isValidError(error))
+	if(AL_NO_ERROR != error)
 	{
 		OAL_LOG_ERROR_CONTEXT(contextInfo, @"%s (error code 0x%08x)", alGetString(error), error);
 		[[NSNotificationCenter defaultCenter] postNotificationName:OALAudioErrorNotification object:[ALWrapper class]];
@@ -132,7 +125,7 @@ BOOL checkIfSuccessful(const char* contextInfo)
 BOOL checkIfSuccessfulWithDevice(const char* contextInfo, ALCdevice* device)
 {
 	ALenum error = alcGetError(device);
-    if(isValidError(error))
+	if(ALC_NO_ERROR != error)
 	{
 		OAL_LOG_ERROR_CONTEXT(contextInfo, @"%s (error code 0x%08x)", alcGetString(device, error), error);
 		[[NSNotificationCenter defaultCenter] postNotificationName:OALAudioErrorNotification object:[ALWrapper class]];

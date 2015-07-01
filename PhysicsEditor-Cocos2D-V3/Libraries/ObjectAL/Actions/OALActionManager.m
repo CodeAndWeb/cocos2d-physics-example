@@ -32,6 +32,7 @@
 #import "ObjectALMacros.h"
 #import "ARCSafe_MemMgmt.h"
 #import "NSMutableArray+WeakReferences.h"
+#import "IOSVersion.h"
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #import <UIKit/UIKit.h>
 #endif
@@ -80,10 +81,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OALActionManager);
 												 selector:@selector(doResetTimeDelta:)
 													 name:UIApplicationDidBecomeActiveNotification
 												   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(doResetTimeDelta:)
-                                                     name:UIApplicationWillEnterForegroundNotification
-                                                   object:nil];
+		if([IOSVersion sharedInstance].version >= 4.0)
+		{
+			[[NSNotificationCenter defaultCenter] addObserver:self
+													 selector:@selector(doResetTimeDelta:)
+														 name:@"UIApplicationWillEnterForegroundNotification"
+													   object:nil];
+		}
 #endif
 	}
 	return self;

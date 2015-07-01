@@ -2,8 +2,8 @@
 //  main.m
 //  PhysicsEditor-Cocos2D-V3
 //
-//  Created by Joachim Grill on 10.04.14.
-//  Copyright CodeAndWeb GmbH 2014. All rights reserved.
+//  Created by Joachim Grill on 30.06.15.
+//  Copyright CodeAndWeb GmbH 2015. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
