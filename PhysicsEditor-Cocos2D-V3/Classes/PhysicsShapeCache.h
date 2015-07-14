@@ -1,16 +1,12 @@
 //
-//  GCCShapeCache.h
-//  
-//  Loads physics sprites created with http://www.PhysicsEditor.de
+//  PhysicsShapeCache.h
 //
-//  Shape Cache for Cocos2D V3 / sChipmunk
+//  Loads physics sprites created with https://www.codeandweb.com/physicseditor
 //
-//  Copyright by Andreas Loew 
-//      http://www.PhysicsEditor.de
-//      http://texturepacker.com
-//      http://www.code-and-web.de
-//  
-//  All rights reserved.
+//  Shape Cache for Cocos2D V3 / Chipmunk
+//
+//  Copyright (c) 2015 CodeAndWeb GmbH. All rights reserved.
+//  https://www.codeandweb.com
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +14,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,16 +31,16 @@
 #import "CCPhysicsBody.h"
 
 /**
- * Shape cache 
- * This class holds the shapes and makes them accessible 
+ * Shape cache
+ * This class holds the shapes and makes them accessible
  * The format can be used on any MacOS/iOS system
  */
-@interface GCCShapeCache : NSObject
+@interface PhysicsShapeCache : NSObject
 {
     NSMutableDictionary *bodyDefs;
 }
 
-+ (GCCShapeCache *)sharedShapeCache;
++ (PhysicsShapeCache *)sharedShapeCache;
 
 /**
  * Adds shapes to the shape cache

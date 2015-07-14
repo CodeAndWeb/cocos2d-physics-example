@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53DD1EA91B5506B500B6BC6B /* PhysicsShapeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DD1EA81B5506B500B6BC6B /* PhysicsShapeCache.m */; };
 		AAE2EAF51B42E03500600C8B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE2EAF41B42E03500600C8B /* Default.png */; };
 		AAE2EAF71B42E03500600C8B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE2EAF61B42E03500600C8B /* Default@2x.png */; };
 		AAE2EAF91B42E03500600C8B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE2EAF81B42E03500600C8B /* Default-568h@2x.png */; };
@@ -204,7 +205,6 @@
 		AAE2EDAA1B42E03600600C8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE2EDA91B42E03600600C8B /* AppDelegate.m */; };
 		AAE2EDAD1B42E03600600C8B /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE2EDAC1B42E03600600C8B /* HelloWorldScene.m */; };
 		AAF2B4B71B42E3D500D5484F /* libObjectiveChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF2B4B61B42E3D500D5484F /* libObjectiveChipmunk.a */; };
-		AAF2B4BA1B42E3F600D5484F /* GCCShapeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2B4B91B42E3F600D5484F /* GCCShapeCache.m */; };
 		AAF2B4C21B42E4BE00D5484F /* background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF2B4BB1B42E4BE00D5484F /* background-hd.png */; };
 		AAF2B4C31B42E4BE00D5484F /* banana-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF2B4BC1B42E4BE00D5484F /* banana-hd.png */; };
 		AAF2B4C41B42E4BE00D5484F /* cherries-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF2B4BD1B42E4BE00D5484F /* cherries-hd.png */; };
@@ -215,6 +215,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53DD1EA71B5506B500B6BC6B /* PhysicsShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsShapeCache.h; path = Classes/PhysicsShapeCache.h; sourceTree = "<group>"; };
+		53DD1EA81B5506B500B6BC6B /* PhysicsShapeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhysicsShapeCache.m; path = Classes/PhysicsShapeCache.m; sourceTree = "<group>"; };
 		AAE2EAED1B42E03500600C8B /* PhysicsEditor-Cocos2D-V3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PhysicsEditor-Cocos2D-V3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE2EAF11B42E03500600C8B /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectiveChipmunk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE2EAF41B42E03500600C8B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
@@ -670,8 +672,6 @@
 		AAE2EDAB1B42E03600600C8B /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		AAE2EDAC1B42E03600600C8B /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
 		AAF2B4B61B42E3D500D5484F /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libObjectiveChipmunk.a; sourceTree = "<group>"; };
-		AAF2B4B81B42E3F600D5484F /* GCCShapeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCCShapeCache.h; path = Classes/GCCShapeCache.h; sourceTree = "<group>"; };
-		AAF2B4B91B42E3F600D5484F /* GCCShapeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCCShapeCache.m; path = Classes/GCCShapeCache.m; sourceTree = "<group>"; };
 		AAF2B4BB1B42E4BE00D5484F /* background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background-hd.png"; path = "Resources/background-hd.png"; sourceTree = "<group>"; };
 		AAF2B4BC1B42E4BE00D5484F /* banana-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "banana-hd.png"; path = "Resources/banana-hd.png"; sourceTree = "<group>"; };
 		AAF2B4BD1B42E4BE00D5484F /* cherries-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cherries-hd.png"; path = "Resources/cherries-hd.png"; sourceTree = "<group>"; };
@@ -1561,8 +1561,8 @@
 		AAE2EDA71B42E03600600C8B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				AAF2B4B81B42E3F600D5484F /* GCCShapeCache.h */,
-				AAF2B4B91B42E3F600D5484F /* GCCShapeCache.m */,
+				53DD1EA71B5506B500B6BC6B /* PhysicsShapeCache.h */,
+				53DD1EA81B5506B500B6BC6B /* PhysicsShapeCache.m */,
 				AAE2EDA81B42E03600600C8B /* AppDelegate.h */,
 				AAE2EDA91B42E03600600C8B /* AppDelegate.m */,
 				AAE2EDAB1B42E03600600C8B /* HelloWorldScene.h */,
@@ -1740,6 +1740,7 @@
 				AAE2EB4A1B42E03500600C8B /* CCActionCatmullRom.m in Sources */,
 				AAE2EB611B42E03500600C8B /* CCAnimation.m in Sources */,
 				AAE2ECC71B42E03600600C8B /* CCBKeyframe.m in Sources */,
+				53DD1EA91B5506B500B6BC6B /* PhysicsShapeCache.m in Sources */,
 				AAE2EC501B42E03500600C8B /* CCButton.m in Sources */,
 				AAE2ED221B42E03600600C8B /* IOSVersion.m in Sources */,
 				AAE2ED1A1B42E03600600C8B /* OALAudioSession.m in Sources */,
@@ -1813,7 +1814,6 @@
 				AAE2EC861B42E03600600C8B /* CCAppDelegate.m in Sources */,
 				AAE2EC831B42E03600600C8B /* UITouch+CC.m in Sources */,
 				AAE2EC051B42E03500600C8B /* CCLightCollection.m in Sources */,
-				AAF2B4BA1B42E3F600D5484F /* GCCShapeCache.m in Sources */,
 				AAE2EBA01B42E03500600C8B /* CCParticleExamples.m in Sources */,
 				AAE2EB4D1B42E03500600C8B /* CCActionEase.m in Sources */,
 				AAE2EC901B42E03600600C8B /* CCWindow.m in Sources */,

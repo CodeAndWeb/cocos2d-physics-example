@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------
 
 #import "HelloWorldScene.h"
-#import "GCCShapeCache.h"
+#import "PhysicsShapeCache.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -34,7 +34,7 @@
 {
     CCSprite *sprite = [CCSprite spriteWithImageNamed:[NSString stringWithFormat:@"%@.png", name]];
     sprite.position = pos;
-    [[GCCShapeCache sharedShapeCache] setBodyWithName:name onNode:sprite];
+    [[PhysicsShapeCache sharedShapeCache] setBodyWithName:name onNode:sprite];
     [_physicsWorld addChild:sprite];
 }
 
@@ -50,7 +50,7 @@
     self.userInteractionEnabled = YES;
 
     // Load shapes
-    [[GCCShapeCache sharedShapeCache] addShapesWithFile:@"Shapes.plist"];
+    [[PhysicsShapeCache sharedShapeCache] addShapesWithFile:@"Shapes.plist"];
     
     // Load background image
     CCSprite *background = [CCSprite spriteWithImageNamed:@"background.png"];

@@ -1,16 +1,12 @@
 //
-//  GCCShapeCache.h
-//  
-//  Loads physics sprites created with http://www.PhysicsEditor.de
+//  PhysicsShapeCache.m
 //
-//  Shape Cache for Cocos2D V3 / sChipmunk
+//  Loads physics sprites created with https://www.codeandweb.com/physicseditor
 //
-//  Copyright by Andreas Loew 
-//      http://www.PhysicsEditor.de
-//      http://texturepacker.com
-//      http://www.code-and-web.de
-//  
-//  All rights reserved.
+//  Shape Cache for Cocos2D V3 / Chipmunk
+//
+//  Copyright (c) 2015 CodeAndWeb GmbH. All rights reserved.
+//  https://www.codeandweb.com
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +14,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,7 +27,7 @@
 //  THE SOFTWARE.
 //
 
-#import "GCCShapeCache.h"
+#import "PhysicsShapeCache.h"
 #import "CCPhysicsShape.h"
 #import "CCPhysicsBody.h"
 
@@ -68,7 +64,7 @@ static CGPoint CGPointFromString_(NSString* str)
 
 @end
 
-typedef enum 
+typedef enum
 {
     GFIXTURE_POLYGON,
     GFIXTURE_POLYLINE,
@@ -82,20 +78,20 @@ typedef enum
 @interface GFixtureData : NSObject
 {
     @public
-    
+
     GFixtureType fixtureType;
-    
+
     CGFloat mass;
     CGFloat elasticity;
     CGFloat friction;
 
     CGPoint surfaceVelocity;
-    
+
     NSString *collisionGroup;
     NSString *collisionType;
     NSArray *collisionCategories;
     NSArray *collisionMask;
-    
+
     BOOL isSensor;
 
     // for circles
@@ -114,7 +110,7 @@ typedef enum
 {
     self = [super init];
     if(self)
-    {        
+    {
         polygons = [[NSMutableArray alloc] init];
     }
     return self;
@@ -146,7 +142,7 @@ typedef enum
 {
     self = [super init];
     if(self)
-    {        
+    {
         fixtures = [[NSMutableArray alloc] init];
     }
     return self;
@@ -155,18 +151,18 @@ typedef enum
 @end
 
 
-@implementation GCCShapeCache
+@implementation PhysicsShapeCache
 {
     NSArray *categoryNames;
     CGFloat scaleFactor;
 }
 
-+ (GCCShapeCache *)sharedShapeCache
++ (PhysicsShapeCache *)sharedShapeCache
 {
-    static GCCShapeCache *shapeCache = 0;
+    static PhysicsShapeCache *shapeCache = 0;
     if(!shapeCache)
     {
-        shapeCache = [[GCCShapeCache alloc] init];
+        shapeCache = [[PhysicsShapeCache alloc] init];
     }
     return shapeCache;
 }
@@ -198,11 +194,11 @@ typedef enum
     [shape setSensor:fixture->isSensor];
     if (fixture->collisionCategories != nil && [fixture->collisionCategories count] > 0)
     {
-        [shape setCollisionCategories:fixture->collisionCategories];
+    [shape setCollisionCategories:fixture->collisionCategories];
     }
     if (fixture->collisionMask != nil && [fixture->collisionMask count] > 0)
     {
-        [shape setCollisionMask:fixture->collisionMask];
+    [shape setCollisionMask:fixture->collisionMask];
     }
     if (fixture->collisionGroup != nil)
     {
@@ -223,7 +219,7 @@ typedef enum
     {
         return 0;
     }
-    
+
     NSMutableArray *shapes = [NSMutableArray array];
     // iterate over fixtures
     for(GFixtureData *fd in bd->fixtures)
@@ -231,7 +227,7 @@ typedef enum
         if(fd->fixtureType == GFIXTURE_CIRCLE)
         {
             CCPhysicsShape *shape = [CCPhysicsShape circleShapeWithRadius:fd->radius center:fd->center];
-            [GCCShapeCache setProperties:fd onShape:shape];
+            [PhysicsShapeCache setProperties:fd onShape:shape];
             [shapes addObject:shape];
         }
         else if (fd->fixtureType == GFIXTURE_POLYLINE)
@@ -241,7 +237,7 @@ typedef enum
             for(int i = 0; i < hull->numVertices; i++)
             {
                 CCPhysicsShape *shape = [CCPhysicsShape pillShapeFrom:hull->vertices[i] to:hull->vertices[(i+1) % hull->numVertices] cornerRadius:fd->cornerRadius];
-                [GCCShapeCache setProperties:fd onShape:shape];
+                [PhysicsShapeCache setProperties:fd onShape:shape];
                 [shapes addObject:shape];
             }
         }
@@ -252,7 +248,7 @@ typedef enum
             for(GPolygon *p in fd->polygons)
             {
                 CCPhysicsShape *shape = [CCPhysicsShape polygonShapeWithPoints:p->vertices count:p->numVertices cornerRadius:fd->cornerRadius];
-                [GCCShapeCache setProperties:fd onShape:shape];
+                [PhysicsShapeCache setProperties:fd onShape:shape];
                 [shapes addObject:shape];
             }
         }
@@ -304,13 +300,13 @@ typedef enum
     {
         return FALSE;
     }
-    
+
     categoryNames = [dictionary objectForKey:@"category_names"];
     scaleFactor = [[dictionary objectForKey:@"scale_factor"] floatValue];
-    
+
     NSDictionary *bodyDict = [dictionary objectForKey:@"bodies"];
 
-    for(NSString *bodyName in bodyDict) 
+    for(NSString *bodyName in bodyDict)
     {
         // get the body data
         NSDictionary *bodyData = [bodyDict objectForKey:bodyName];
@@ -338,14 +334,14 @@ typedef enum
             {
                 return FALSE;
             }
-            
+
             // add the fixture to the body
             [bodyDef->fixtures addObject:fd];
 
             fd->friction = [[fixtureData objectForKey:@"friction"] floatValue];
-            fd->elasticity = [[fixtureData objectForKey:@"elasticity"] floatValue];            
-            fd->mass = [[fixtureData objectForKey:@"mass"] floatValue];            
-            fd->surfaceVelocity = CGPointFromString_([fixtureData objectForKey:@"surface_velocity"]);        
+            fd->elasticity = [[fixtureData objectForKey:@"elasticity"] floatValue];
+            fd->mass = [[fixtureData objectForKey:@"mass"] floatValue];
+            fd->surfaceVelocity = CGPointFromString_([fixtureData objectForKey:@"surface_velocity"]);
             fd->isSensor = [[fixtureData objectForKey:@"is_sensor"] boolValue];
             fd->cornerRadius = [[fixtureData objectForKey:@"corner_radius"] floatValue];
             fd->collisionType = [fixtureData objectForKey:@"collision_type"];
@@ -370,9 +366,9 @@ typedef enum
             if([fixtureType isEqual:@"POLYGON"] || [fixtureType isEqual:@"POLYLINE"])
             {
                 NSArray *polygonsArray = [fixtureData objectForKey:@"polygons"];
-                
+
                 fd->fixtureType = [fixtureType isEqual:@"POLYGON"] ? GFIXTURE_POLYGON : GFIXTURE_POLYLINE;
-                
+
                 for(NSArray *polygonArray in polygonsArray)
                 {
                     GPolygon *poly = [[GPolygon alloc] init];
@@ -383,7 +379,7 @@ typedef enum
 
                     // add the polygon to the fixture
                     [fd->polygons addObject:poly];
-                    
+
                     // add vertices
                     poly->numVertices = [polygonArray count];
                     CGPoint *vertices = poly->vertices = malloc(sizeof(CGPoint) * poly->numVertices);
@@ -391,7 +387,7 @@ typedef enum
                     {
                         return FALSE;
                     }
-                    
+
                     int vindex=0;
                     for(NSString *pointString in polygonArray)
                     {
@@ -406,7 +402,7 @@ typedef enum
             else if([fixtureType isEqual:@"CIRCLE"])
             {
                 fd->fixtureType = GFIXTURE_CIRCLE;
-                
+
                 NSDictionary *circleData = [fixtureData objectForKey:@"circle"];
 
                 fd->radius = [[circleData objectForKey:@"radius"] floatValue] / scaleFactor;
@@ -419,11 +415,11 @@ typedef enum
                 // unknown type
                 assert(0);
             }
-    
+
         }
-        
+
     }
-    
+
     return TRUE;
 }
 
