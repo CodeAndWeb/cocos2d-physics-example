@@ -13,7 +13,7 @@ When cloning the project use the following command line - this will automaticall
 git clone --recursive https://github.com/CodeAndWeb/PhysicsEditor-Cocos2d-ObjC
 ```
 
-![alt text](cocos2d-physics-tutorial-screenshot-1.png =250x)
-![alt text](cocos2d-physics-tutorial-screenshot-2.png =250x)
+<img src="cocos2d-physics-tutorial-screenshot-1.png" alt="Cocos2d Physics Example Screenshot" style="height:450px">
+<img src="cocos2d-physics-tutorial-screenshot-2.png" alt="Cocos2d Physics Example Screenshot" style="height:450px">
 
 
