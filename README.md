@@ -1,8 +1,22 @@
-PhysicsEditor-Cocos2D-V3
-========================
+# UnofficialCocos2DTemplate
+Cocos2D v3.4 template that does not require SpriteBuilder
 
-This is a simple application which demonstrates how you can use PhysicsEditor together with version 3 of Cocos2D, which has integrated the Chipmunk2D physics engine.
+## Usage:
 
-For more information see <a target="_blank" href="http://www.codeandweb.com/blog/2014/04/09/using-physicseditor-with-cocos2d-v3">Using PhysicsEditor with Cocos2D</a>.
+```
+git clone --recursive https://github.com/slembcke/UnofficialCocos2DTemplate.git
+cd UnofficialCocos2DTemplate
+./RenameProject.rb
+```
 
-![](screenshot-app-1.png) ![](screenshot-app-2.png)
+The rename script will ask for a project name, then do a find/replace on the project structure and update all of the name references. Check that the project compiles and then commit the renaming to Git (if you plan to use Git).
+
+## Push to a new GitHub repository:
+
+The cloned repository will be linked to mine. That's probably not what you want. To retain the submodule references, you need to change the origin remote to an empty repository of your own.
+
+```
+git remote set-url origin MyRepositoryURL
+git pull origin
+git push
+```
