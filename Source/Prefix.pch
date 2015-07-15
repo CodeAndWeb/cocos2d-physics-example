@@ -2,6 +2,22 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
+
+//
+// IMPORTANT NOTICE
+//
+// We decided to keep things short - this is why we did not add a complete cocos2d installation
+// to this repository.
+//
 #import "cocos2d.h"
+//
+// Please place a complete cococs2d-swift installation in this path
+// Source/libs/cocos2d-iphone
+//
+// As an alternative you can check out the demo project with all external references using
+//
+// git clone --recursive https://github.com/CodeAndWeb/PhysicsEditor-Cocos2d-ObjC
+//
+
 #import "cocos2d-ui.h"
 #endif
