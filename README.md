@@ -1,22 +1,19 @@
-# UnofficialCocos2DTemplate
-Cocos2D v3.4 template that does not require SpriteBuilder
+# Cocos2d Physics Demo
 
-## Usage:
+This is the source code for the [Cocos2d Physics Tutorial](https://www.codeandweb.com/blog/2015/07/15/cocos2d-physics-tutorial) by CodeAndWeb.
 
-```
-git clone --recursive https://github.com/slembcke/UnofficialCocos2DTemplate.git
-cd UnofficialCocos2DTemplate
-./RenameProject.rb
-```
+## Checking out the source code 
 
-The rename script will ask for a project name, then do a find/replace on the project structure and update all of the name references. Check that the project compiles and then commit the renaming to Git (if you plan to use Git).
+Cocos2d is integrated as git submodule - this makes updating cocos2d to a newer version easy. 
 
-## Push to a new GitHub repository:
+When cloning the project use the following command line - this will automaticall load all depencencies:
 
-The cloned repository will be linked to mine. That's probably not what you want. To retain the submodule references, you need to change the origin remote to an empty repository of your own.
 
 ```
-git remote set-url origin MyRepositoryURL
-git pull origin
-git push
+git clone --recursive https://github.com/CodeAndWeb/PhysicsEditor-Cocos2d-ObjC
 ```
+
+![alt text](cocos2d-physics-tutorial-screenshot-1.png =250x)
+![alt text](cocos2d-physics-tutorial-screenshot-2.png =250x)
+
+
