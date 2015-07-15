@@ -50,7 +50,7 @@
             <key>banana</key>
             <dict>
                 <key>anchorpoint</key>
-                <string>{ 0.69531,0.31250 }</string>
+                <string>{ 0.69500,0.31200 }</string>
                 <key>is_static</key>
                 <false/>
                 <key>affected_by_gravity</key>
@@ -64,7 +64,7 @@
                         <key>mass</key>
                         <real>1</real>
                         <key>elasticity</key>
-                        <real>0.5</real>
+                        <real>0.9</real>
                         <key>friction</key>
                         <real>0.7</real>
                         <key>surface_velocity</key>
@@ -131,7 +131,7 @@
             <key>cherries</key>
             <dict>
                 <key>anchorpoint</key>
-                <string>{ 0.66797,0.83594 }</string>
+                <string>{ 0.67200,0.83600 }</string>
                 <key>is_static</key>
                 <false/>
                 <key>affected_by_gravity</key>
@@ -279,7 +279,7 @@
             <key>crate</key>
             <dict>
                 <key>anchorpoint</key>
-                <string>{ 0.53125,0.47266 }</string>
+                <string>{ 0.53100,0.46900 }</string>
                 <key>is_static</key>
                 <false/>
                 <key>affected_by_gravity</key>
@@ -382,8 +382,6 @@
                                 <string>{ 47.00000,262.00000 }</string>   
                                 <string>{ 45.00000,232.00000 }</string>   
                                 <string>{ 27.00000,240.00000 }</string>   
-                                <string>{ 23.00000,232.00000 }</string>   
-                                <string>{ 27.00000,225.00000 }</string>   
                                 <string>{ 21.00000,218.00000 }</string>   
                                 <string>{ 34.00000,189.00000 }</string>   
                                 <string>{ 17.00000,170.00000 }</string>   
@@ -443,7 +441,7 @@
             <key>orange</key>
             <dict>
                 <key>anchorpoint</key>
-                <string>{ 0.53906,0.46875 }</string>
+                <string>{ 0.53900,0.46900 }</string>
                 <key>is_static</key>
                 <false/>
                 <key>affected_by_gravity</key>
