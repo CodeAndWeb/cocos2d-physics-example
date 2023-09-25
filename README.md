@@ -1,6 +1,6 @@
 # Cocos2d Physics Demo
 
-This is the source code for the [Cocos2d Physics Tutorial](https://www.codeandweb.com/blog/2015/07/15/cocos2d-physics-tutorial) by CodeAndWeb.
+This is the source code for the [Cocos2d Physics Tutorial](https://www.codeandweb.com/physicseditor/tutorials/cocos2d-physics-tutorial) by CodeAndWeb.
 
 ## Checking out the source code 
 
@@ -10,7 +10,7 @@ When cloning the project use the following command line - this will automaticall
 
 
 ```
-git clone --recursive https://github.com/CodeAndWeb/PhysicsEditor-Cocos2d-ObjC
+git clone --recursive https://github.com/CodeAndWeb/cocos2d-physics-example
 ```
 
 <img src="cocos2d-physics-tutorial-screenshot-2.png" alt="Cocos2d Physics Example Screenshot" style="height:450px">
